@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud Firebase</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Crud <b>Firebase</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#addColaboradorModal" class="btn btn-success" data-toggle="modal">
+                            <i class="material-icons">&#xE147;</i> <span>Adicionar Novo Colaborador</span>
+                        </a>
+
+                        <a href="#" class="btn btn-danger" data-toggle="modal">
+                            <i class="material-icons">&#xE15C;</i> <span>Deletar</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="colaborador-tabela" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" class="selecionarTodos">
+                                    <label for="selecionarTodos"></label>
+                                </span>
+                            </th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Endereço</th>
+                            <th>Telefone</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix">
+                <div class="hint-text">Total de <b class="contar">0</b> entradas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Adicionar HTML  -->
+    <div class="modal fade" id="addColaboradorModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="" id="add-colaborador-form">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Adicionar Colaborador</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Nome</label>
+                            <input type="text" id="colaborador-nome" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" id="colaborador-email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Endereço</label>
+                            <textarea name="" id="colaborador-endereco" class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nome</label>
+                            <input type="text" id="colaborador-telefone" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-success" value="Adicionar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar HTML  -->
+    <div class="modal fade" id="editColaboradorModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="" id="edit-colaborador-form">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Colaborador</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Nome</label>
+                            <input type="text" id="colaborador-nome" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" id="colaborador-email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Endereço</label>
+                            <textarea name="" id="colaborador-endereco" class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nome</label>
+                            <input type="text" id="colaborador-telefone" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-info" value="Salvar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Deletar HTML  -->
+    <div class="modal fade" id="deletarColaboradorModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="" id="deletar-colaborador-form">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Deletar Colaborador</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem certeza de que deseja excluir ?</p>
+                        <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-danger" value="Deletar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-firestore.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
