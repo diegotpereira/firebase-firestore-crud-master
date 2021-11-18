@@ -1,5 +1,19 @@
 let colaboradorRef = db.collection('colaborador')
 
+const exibirColaboradores = async(doc) => {
+    console.log('exibirColaboradores')
+
+    let colaboradores = colaboradorRef
+
+    const data = await colaboradores.get()
+
+    data.docs.forEach(doc => {
+        const colaborador = doc.data()
+
+        let item
+    })
+}
+
 $(document).ready(function() {
 
     // Adicionar Colaborador
