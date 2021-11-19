@@ -2,19 +2,20 @@ let colaboradorRef = db.collection('colaboradores')
 
 let deleteIDs = [];
 
-// colaboradorRef.onSnapshot(snapshot => {
-//     let changes = snapshot.docChanges();
-//     changes.forEach(change => {
-//         if (change.type == 'added') {
-//             console.log('added');
-//         } else if (change.type == 'modified') {
-//             console.log('modified');
-//         } else if (change.type == 'removed') {
-//             $('tr[data-id=' + change.doc.id + ']').remove();
-//             console.log('removed');
-//         }
-//     });
-// });
+// Listener Em Tempo Real
+colaboradorRef.onSnapshot(snapshot => {
+    let changes = snapshot.docChanges();
+    changes.forEach(change => {
+        if (change.type == 'added') {
+            console.log('added');
+        } else if (change.type == 'modified') {
+            console.log('modified');
+        } else if (change.type == 'removed') {
+            $('tr[data-id=' + change.doc.id + ']').remove();
+            console.log('removed');
+        }
+    });
+});
 
 colaboradorRef.onSnapshot(snapshot => {
     let size = snapshot.size
@@ -60,29 +61,29 @@ const exibirColaboradores = async(doc) => {
 
         $('#colaborador-tabela').append(item);
 
-        // // ACTIVATE TOOLTIP
-        // $('[data-toggle="tooltip"]').tooltip();
+        // Ativar TOOLTIP
+        $('[data-toggle="tooltip"]').tooltip();
 
-        // // SELECT/DESELECT CHECKBOXES
-        // var checkbox = $('table tbody input[type="checkbox"]');
-        // $("#selecionarTodos").click(function() {
-        //     if (this.checked) {
-        //         checkbox.each(function() {
-        //             console.log(this.id);
-        //             deleteIDs.push(this.id);
-        //             this.checked = true;
-        //         });
-        //     } else {
-        //         checkbox.each(function() {
-        //             this.checked = false;
-        //         });
-        //     }
-        // });
-        // checkbox.click(function() {
-        //     if (!this.checked) {
-        //         $("#selecionarTodos").prop("checked", false);
-        //     }
-        // });
+        // Selecione/Deselecione CHECKBOXES
+        var checkbox = $('table tbody input[type="checkbox"]');
+        $("#selecionarTodos").click(function() {
+            if (this.checked) {
+                checkbox.each(function() {
+                    console.log(this.id);
+                    deleteIDs.push(this.id);
+                    this.checked = true;
+                });
+            } else {
+                checkbox.each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+        checkbox.click(function() {
+            if (!this.checked) {
+                $("#selecionarTodos").prop("checked", false);
+            }
+        });
     })
 
     // UPDATE LATEST DOC
@@ -269,3 +270,23 @@ $(document).ready(function() {
         $('#editar-colaborador-form .form-control').val('')
     })
 })
+
+(function($) {
+    "use strict"
+
+    function modalCentro() {
+        $(this).css('display', 'block')
+
+        var $dialogo = $(this).find(".modal-dialog"),
+            offset = ($(window).height() - $dialogo.height()) / 2,
+            bottomMargin = parseInt($dialogo.css('marginBottom'), 10)
+
+        if (offset < bottomMargin) offset = bottomMargin
+        $dialogo.css("margin-top", offset)
+    }
+
+    $(document).on('show.bs.modal', '.modal', modalCentro)
+    $(window).on("resize", function() {
+        $('.modal:visible').each(modalCentro)
+    })
+}(jQuery))
